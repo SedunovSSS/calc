@@ -115,7 +115,7 @@ def get_x2():
     value = calc.get()
     last = re.findall(r"[-+]?(?:\d*\.*\d+)", value)[-1]
     calc.delete(len(value) - len(last), END)
-    calc.insert(END, int(last)**2)
+    calc.insert(END, str(float(last)**2))
 
 
 def pm():
@@ -145,9 +145,9 @@ def f():
 
 def fact():
     value = calc.get()
-    last = int(re.findall(r"[-+]?(?:\d*\.*\d+)", value)[-1])
+    last = float(re.findall(r"[-+]?(?:\d*\.*\d+)", value)[-1])
     result = 1
-    for i in range(1, last + 1):
+    for i in range(1, int(last) + 1):
         result *= i
     calc.delete(len(value) - len(str(last)), END)
     calc.insert(END, str(result))
