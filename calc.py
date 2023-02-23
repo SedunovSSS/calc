@@ -100,8 +100,12 @@ def sqrt_f():
             i_last = int(sqrt(float(last)))
         else:
             i_last = sqrt(float(last))
-        calc.delete(len(value)-len(last), END)
-        calc.insert(END, str(i_last))
+        if len(value) == len(last):
+            calc.delete(len(value)-len(last), END)
+            calc.insert(END, str(i_last))
+        else:
+            calc.delete(len(value) - len(last) + 1, END)
+            calc.insert(END, str(i_last))
     except:
         calc.delete(0, END)
         calc.insert(END, '0')
