@@ -118,8 +118,12 @@ def x2():
 def get_x2():
     value = calc.get()
     last = re.findall(r"[-+]?(?:\d*\.*\d+)", value)[-1]
-    calc.delete(len(value) - len(last), END)
-    calc.insert(END, str(float(last)**2))
+    if float(last) == int(float(last)):
+        calc.delete(len(value) - len(last), END)
+        calc.insert(END, str(int(last)**2))
+    else:
+        calc.delete(len(value) - len(last) + 1, END)
+        calc.insert(END, str(float(last)**2))
 
 
 def pm():
