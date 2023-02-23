@@ -4,11 +4,11 @@ from math import sqrt, pi, e
 from ttkthemes import ThemedTk
 import re
 
-root = ThemedTk(theme='breeze')
+root = ThemedTk(theme='arc')
 root.title('Calculator')
 root.resizable(False, False)
 root.iconbitmap('calculator.ico')
-btn_w = 4
+btn_w = 10
 
 
 def add_num(text):
@@ -47,7 +47,7 @@ def ravno():
 
 
 def c():
-    return ttk.Button(text='C', width=btn_w, command=lambda: clear())
+    return ttk.Button(text='AC', width=btn_w, command=lambda: clear())
 
 
 def clear():
@@ -157,37 +157,37 @@ def fact():
     calc.insert(END, str(result))
 
 
-calc = ttk.Entry(width=25, justify='right')
-calc.grid(row=0, column=0, columnspan=3, pady=5, padx=5)
+calc = ttk.Entry(width=40, justify='right')
+calc.grid(row=0, column=0, columnspan=3)
 calc.insert(0, '0')
-num('0').grid(row=1, column=0, pady=5, padx=5)
-num('1').grid(row=1, column=1, pady=5, padx=5)
-num('2').grid(row=1, column=2, pady=5, padx=5)
-num('3').grid(row=2, column=0, pady=5, padx=5)
-num('4').grid(row=2, column=1, pady=5, padx=5)
-num('5').grid(row=2, column=2, pady=5, padx=5)
-num('6').grid(row=3, column=0, pady=5, padx=5)
-num('7').grid(row=3, column=1, pady=5, padx=5)
-num('8').grid(row=3, column=2, pady=5, padx=5)
-num('9').grid(row=4, column=0, pady=5, padx=5)
-op('+').grid(row=4, column=1, pady=5, padx=5)
-op('-').grid(row=4, column=2, pady=5, padx=5)
-op('*').grid(row=5, column=0, pady=5, padx=5)
-op('/').grid(row=5, column=1, pady=5, padx=5)
-r().grid(row=7, column=3, pady=5, padx=5)
-c().grid(row=1, column=3, pady=5, padx=5)
-op('.').grid(row=2, column=3, pady=5, padx=5)
-d().grid(row=0, column=3, pady=5, padx=5)
-op('(').grid(row=3, column=3, pady=5, padx=5)
-op(')').grid(row=4, column=3, pady=5, padx=5)
-op('**').grid(row=5, column=2, pady=5, padx=5)
-p().grid(row=6, column=2, pady=5, padx=5)
-op('//').grid(row=5, column=3, pady=5, padx=5)
-e_f().grid(row=6, column=1, pady=5, padx=5)
-op('%').grid(row=6, column=0, pady=5, padx=5)
-s().grid(row=6, column=3, pady=5, padx=5)
-x2().grid(row=7, column=0, pady=5, padx=5)
-pm().grid(row=7, column=1, pady=5, padx=5)
-f().grid(row=7, column=2, pady=5, padx=5)
+num('0').grid(row=1, column=0)
+num('1').grid(row=1, column=1)
+num('2').grid(row=1, column=2)
+num('3').grid(row=2, column=0)
+num('4').grid(row=2, column=1)
+num('5').grid(row=2, column=2)
+num('6').grid(row=3, column=0)
+num('7').grid(row=3, column=1)
+num('8').grid(row=3, column=2)
+num('9').grid(row=4, column=0)
+op('+').grid(row=4, column=1)
+op('-').grid(row=4, column=2)
+op('*').grid(row=5, column=0)
+op('/').grid(row=5, column=1)
+r().grid(row=7, column=3)
+c().grid(row=1, column=3)
+op('.').grid(row=2, column=3)
+d().grid(row=0, column=3)
+op('(').grid(row=3, column=3)
+op(')').grid(row=4, column=3)
+op('**').grid(row=5, column=2)
+p().grid(row=6, column=2)
+op('//').grid(row=5, column=3)
+e_f().grid(row=6, column=1)
+op('%').grid(row=6, column=0)
+s().grid(row=6, column=3)
+x2().grid(row=7, column=0)
+pm().grid(row=7, column=1)
+f().grid(row=7, column=2)
 
 root.mainloop()
