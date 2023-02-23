@@ -96,10 +96,10 @@ def sqrt_f():
     value = calc.get()
     try:
         last = re.findall(r"[-+]?(?:\d*\.*\d+)", value)[-1]
-        if float(sqrt(float(last))) == int(sqrt(float(last))):
-            i_last = int(sqrt(float(last)))
+        if float(sqrt(abs(float(last)))) == int(sqrt(abs(float(last)))):
+            i_last = int(sqrt(abs(float(last))))
         else:
-            i_last = sqrt(float(last))
+            i_last = sqrt(abs(float(last)))
         if len(value) == len(last):
             calc.delete(len(value)-len(last), END)
             calc.insert(END, str(i_last))
@@ -118,12 +118,21 @@ def x2():
 def get_x2():
     value = calc.get()
     last = re.findall(r"[-+]?(?:\d*\.*\d+)", value)[-1]
+    print(float(last)**2, int(float(last))**2)
     if float(last) == int(float(last)):
-        calc.delete(len(value) - len(last), END)
-        calc.insert(END, str(int(last)**2))
+        if len(value) == len(last):
+            calc.delete(len(value) - len(last), END)
+            calc.insert(END, str(int(last)**2))
+        else:
+            calc.delete(len(value) - len(last), END)
+            calc.insert(END, str(int(last) ** 2))
     else:
-        calc.delete(len(value) - len(last) + 1, END)
-        calc.insert(END, str(float(last)**2))
+        if len(value) == len(last):
+            calc.delete(len(value) - len(last), END)
+            calc.insert(END, str(float(last) ** 2))
+        else:
+            calc.delete(len(value) - len(last), END)
+            calc.insert(END, str(float(last) ** 2))
 
 
 def pm():
