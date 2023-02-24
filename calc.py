@@ -1,6 +1,6 @@
 from tkinter import ttk
 from tkinter import *
-from math import sqrt, pi, e
+from math import sqrt, pi, e, sin, cos, radians
 from ttkthemes import ThemedTk
 import re
 
@@ -170,6 +170,78 @@ def fact():
     calc.insert(END, str(result))
 
 
+def sin_btn():
+    return ttk.Button(text='sin', width=btn_w, command=lambda: get_sin())
+
+
+def get_sin():
+    value = calc.get()
+    last = re.findall(r"[-+]?(?:\d*\.*\d+)", value)[-1]
+    calc.delete(len(value) - len(last) - 1, END)
+    if sin(radians(float(last))) == int(sin(radians(float(last)))):
+        calc.insert(END, str(int(sin(radians(float(last))))))
+    else:
+        calc.insert(END, str(round(sin(radians(float(last))), 15)))
+
+
+def cos_btn():
+    return ttk.Button(text='cos', width=btn_w, command=lambda: get_cos())
+
+
+def get_cos():
+    value = calc.get()
+    last = re.findall(r"[-+]?(?:\d*\.*\d+)", value)[-1]
+    calc.delete(len(value) - len(last) - 1, END)
+    if cos(radians(float(last))) == int(cos(radians(float(last)))):
+        calc.insert(END, str(int(cos(radians(float(last))))))
+    else:
+        calc.insert(END, str(round(cos(radians(float(last))), 15)))
+
+
+def tan_btn():
+    return ttk.Button(text='tan', width=btn_w, command=lambda: get_tan())
+
+
+def tg(angle):
+    return sin(angle) / cos(angle)
+
+
+def get_tan():
+    value = calc.get()
+    last = re.findall(r"[-+]?(?:\d*\.*\d+)", value)[-1]
+    calc.delete(len(value) - len(last) - 1, END)
+    try:
+        if tg(radians(float(last))) == int(tg(radians(float(last)))):
+            calc.insert(END, str(int(tg(radians(float(last))))))
+        else:
+            calc.insert(END, str(round(tg(radians(float(last))), 15)))
+    except:
+        calc.delete(0, END)
+        calc.insert(END, '0')
+
+
+def ctg_btn():
+    return ttk.Button(text='ctg', width=btn_w, command=lambda: get_ctg())
+
+
+def ctg(angle):
+    return cos(angle) / sin(angle)
+
+
+def get_ctg():
+    value = calc.get()
+    last = re.findall(r"[-+]?(?:\d*\.*\d+)", value)[-1]
+    calc.delete(len(value) - len(last) - 1, END)
+    try:
+        if ctg(radians(float(last))) == int(ctg(radians(float(last)))):
+            calc.insert(END, str(int(ctg(radians(float(last))))))
+        else:
+            calc.insert(END, str(round(ctg(radians(float(last))), 15)))
+    except:
+        calc.delete(0, END)
+        calc.insert(END, '0')
+
+
 calc = ttk.Entry(width=40, justify='right')
 calc.grid(row=0, column=0, columnspan=3)
 calc.insert(0, '0')
@@ -187,7 +259,7 @@ op('+').grid(row=5, column=0)
 op('-').grid(row=5, column=1)
 op('*').grid(row=5, column=2)
 op('/').grid(row=5, column=3)
-r().grid(row=7, column=3)
+r().grid(row=8, column=3)
 c().grid(row=1, column=3)
 op('.').grid(row=2, column=3)
 d().grid(row=0, column=3)
@@ -199,8 +271,12 @@ op('//').grid(row=6, column=3)
 e_f().grid(row=4, column=2)
 op('%').grid(row=6, column=0)
 s().grid(row=6, column=2)
-x2().grid(row=7, column=2)
-pm().grid(row=7, column=1)
-f().grid(row=7, column=0)
+sin_btn().grid(row=7, column=0)
+cos_btn().grid(row=7, column=1)
+tan_btn().grid(row=7, column=2)
+ctg_btn().grid(row=7, column=3)
+x2().grid(row=8, column=2)
+pm().grid(row=8, column=1)
+f().grid(row=8, column=0)
 
 root.mainloop()
