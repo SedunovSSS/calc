@@ -1,8 +1,9 @@
 from tkinter import ttk
 from tkinter import *
-from math import sqrt, pi, e, sin, cos, radians
+from math import sqrt, pi, e, sin, cos, radians, log10, log2, log
 from ttkthemes import ThemedTk
 import re
+import random
 
 root = ThemedTk(theme='arc')
 root.title('Calculator')
@@ -79,7 +80,7 @@ def pi_f():
 
 
 def e_f():
-    return ttk.Button(text='E', width=btn_w, command=lambda: num_e())
+    return ttk.Button(text='e', width=btn_w, command=lambda: num_e())
 
 
 def num_e():
@@ -118,7 +119,6 @@ def x2():
 def get_x2():
     value = calc.get()
     last = re.findall(r"[-+]?(?:\d*\.*\d+)", value)[-1]
-    print(float(last)**2, int(float(last))**2)
     if float(last) == int(float(last)):
         if len(value) == len(last):
             calc.delete(len(value) - len(last), END)
@@ -157,7 +157,7 @@ def plus_minus():
 
 
 def f():
-    return ttk.Button(text='!', width=btn_w, command=lambda: fact())
+    return ttk.Button(text='n!', width=btn_w, command=lambda: fact())
 
 
 def fact():
@@ -242,6 +242,70 @@ def get_ctg():
         calc.insert(END, '0')
 
 
+def rd():
+    return ttk.Button(text='rand', width=btn_w, command=lambda: rand())
+
+
+def rand():
+    if calc.get() == '0':
+        calc.delete(0, END)
+    calc.insert(END, str(random.random()))
+
+
+def l10():
+    return ttk.Button(text='log10', width=btn_w, command=lambda: get_l10())
+
+
+def get_l10():
+    value = calc.get()
+    last = re.findall(r"[-+]?(?:\d*\.*\d+)", value)[-1]
+    calc.delete(len(value) - len(last), END)
+    try:
+        if log10(float(last)) == int(log10(float(last))):
+            calc.insert(END, str(int(log10(float(last)))))
+        else:
+            calc.insert(END, str(log10(float(last))))
+    except:
+        calc.delete(0, END)
+        calc.insert(END, '0')
+
+
+def l2():
+    return ttk.Button(text='log2', width=btn_w, command=lambda: get_l2())
+
+
+def get_l2():
+    value = calc.get()
+    last = re.findall(r"[-+]?(?:\d*\.*\d+)", value)[-1]
+    calc.delete(len(value) - len(last), END)
+    try:
+        if log2(float(last)) == int(log2(float(last))):
+            calc.insert(END, str(int(log2(float(last)))))
+        else:
+            calc.insert(END, str(log2(float(last))))
+    except:
+        calc.delete(0, END)
+        calc.insert(END, '0')
+
+
+def l():
+    return ttk.Button(text='ln', width=btn_w, command=lambda: get_l())
+
+
+def get_l():
+    value = calc.get()
+    last = re.findall(r"[-+]?(?:\d*\.*\d+)", value)[-1]
+    calc.delete(len(value) - len(last), END)
+    try:
+        if log(float(last)) == int(log(float(last))):
+            calc.insert(END, str(int(log(float(last)))))
+        else:
+            calc.insert(END, str(log(float(last))))
+    except:
+        calc.delete(0, END)
+        calc.insert(END, '0')
+
+
 calc = ttk.Entry(width=40, justify='right')
 calc.grid(row=0, column=0, columnspan=3)
 calc.insert(0, '0')
@@ -259,7 +323,7 @@ op('+').grid(row=5, column=0)
 op('-').grid(row=5, column=1)
 op('*').grid(row=5, column=2)
 op('/').grid(row=5, column=3)
-r().grid(row=8, column=3)
+r().grid(row=9, column=3)
 c().grid(row=1, column=3)
 op('.').grid(row=2, column=3)
 d().grid(row=0, column=3)
@@ -275,8 +339,12 @@ sin_btn().grid(row=7, column=0)
 cos_btn().grid(row=7, column=1)
 tan_btn().grid(row=7, column=2)
 ctg_btn().grid(row=7, column=3)
-x2().grid(row=8, column=2)
-pm().grid(row=8, column=1)
-f().grid(row=8, column=0)
+l2().grid(row=8, column=0)
+l10().grid(row=8, column=1)
+l().grid(row=8, column=2)
+rd().grid(row=8, column=3)
+x2().grid(row=9, column=2)
+pm().grid(row=9, column=1)
+f().grid(row=9, column=0)
 
 root.mainloop()
