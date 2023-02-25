@@ -203,7 +203,7 @@ def tan_btn():
 
 
 def tg(angle):
-    return sin(angle) / cos(angle)
+    return round(sin(angle), 15) / round(cos(angle), 15)
 
 
 def get_tan():
@@ -225,7 +225,7 @@ def ctg_btn():
 
 
 def ctg(angle):
-    return cos(angle) / sin(angle)
+    return round(cos(angle), 15) / round(sin(angle), 15)
 
 
 def get_ctg():
