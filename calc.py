@@ -177,7 +177,7 @@ def sin_btn():
 def get_sin():
     value = calc.get()
     last = re.findall(r"[-+]?(?:\d*\.*\d+)", value)[-1]
-    calc.delete(len(value) - len(last) - 1, END)
+    calc.delete(len(value) - len(last) + 1, END)
     if sin(radians(float(last))) == int(sin(radians(float(last)))):
         calc.insert(END, str(int(sin(radians(float(last))))))
     else:
@@ -191,7 +191,7 @@ def cos_btn():
 def get_cos():
     value = calc.get()
     last = re.findall(r"[-+]?(?:\d*\.*\d+)", value)[-1]
-    calc.delete(len(value) - len(last) - 1, END)
+    calc.delete(len(value) - len(last) + 1, END)
     if cos(radians(float(last))) == int(cos(radians(float(last)))):
         calc.insert(END, str(int(cos(radians(float(last))))))
     else:
@@ -209,7 +209,7 @@ def tg(angle):
 def get_tan():
     value = calc.get()
     last = re.findall(r"[-+]?(?:\d*\.*\d+)", value)[-1]
-    calc.delete(len(value) - len(last) - 1, END)
+    calc.delete(len(value) - len(last) + 1, END)
     try:
         if tg(radians(float(last))) == int(tg(radians(float(last)))):
             calc.insert(END, str(int(tg(radians(float(last))))))
@@ -231,7 +231,7 @@ def ctg(angle):
 def get_ctg():
     value = calc.get()
     last = re.findall(r"[-+]?(?:\d*\.*\d+)", value)[-1]
-    calc.delete(len(value) - len(last) - 1, END)
+    calc.delete(len(value) - len(last) + 1, END)
     try:
         if ctg(radians(float(last))) == int(ctg(radians(float(last)))):
             calc.insert(END, str(int(ctg(radians(float(last))))))
@@ -259,7 +259,7 @@ def l10():
 def get_l10():
     value = calc.get()
     last = re.findall(r"[-+]?(?:\d*\.*\d+)", value)[-1]
-    calc.delete(len(value) - len(last), END)
+    calc.delete(len(value) - len(last) + 1, END)
     try:
         if log10(float(last)) == int(log10(float(last))):
             calc.insert(END, str(int(log10(float(last)))))
@@ -277,7 +277,7 @@ def l2():
 def get_l2():
     value = calc.get()
     last = re.findall(r"[-+]?(?:\d*\.*\d+)", value)[-1]
-    calc.delete(len(value) - len(last), END)
+    calc.delete(len(value) - len(last) + 1, END)
     try:
         if log2(float(last)) == int(log2(float(last))):
             calc.insert(END, str(int(log2(float(last)))))
@@ -295,7 +295,7 @@ def l():
 def get_l():
     value = calc.get()
     last = re.findall(r"[-+]?(?:\d*\.*\d+)", value)[-1]
-    calc.delete(len(value) - len(last), END)
+    calc.delete(len(value) - len(last) + 1, END)
     try:
         if log(float(last)) == int(log(float(last))):
             calc.insert(END, str(int(log(float(last)))))
