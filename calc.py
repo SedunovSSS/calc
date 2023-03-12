@@ -4,12 +4,23 @@ from math import sqrt, pi, e, sin, cos, radians, log10, log2, log
 from ttkthemes import ThemedTk
 import re
 import random
+import webbrowser
 
 root = ThemedTk(theme='arc')
 root.title('Calculator')
 root.resizable(False, False)
 root.iconbitmap('calculator.ico')
 btn_w = 10
+mainmenu = Menu(root)
+root.config(menu=mainmenu)
+mainmenu.add_command(label="Creator", command=lambda: webbrowser.open_new_tab('https://github.com/SedunovSSS'))
+mainmenu.add_command(label="Copy to clipboard", command=lambda: ctc())
+mainmenu.add_command(label="Exit", command=lambda: root.destroy())
+
+
+def ctc():
+    root.clipboard_clear()
+    root.clipboard_append(calc.get())
 
 
 def add_num(text):
@@ -338,15 +349,15 @@ def get_l():
 calc = ttk.Entry(width=40, justify='right')
 calc.grid(row=0, column=0, columnspan=3)
 calc.insert(0, '0')
-num('1').grid(row=1, column=0)
-num('2').grid(row=1, column=1)
-num('3').grid(row=1, column=2)
+num('7').grid(row=1, column=0)
+num('8').grid(row=1, column=1)
+num('9').grid(row=1, column=2)
 num('4').grid(row=2, column=0)
 num('5').grid(row=2, column=1)
 num('6').grid(row=2, column=2)
-num('7').grid(row=3, column=0)
-num('8').grid(row=3, column=1)
-num('9').grid(row=3, column=2)
+num('1').grid(row=3, column=0)
+num('2').grid(row=3, column=1)
+num('3').grid(row=3, column=2)
 num('0').grid(row=4, column=0)
 op('+').grid(row=5, column=0)
 op('-').grid(row=5, column=1)
