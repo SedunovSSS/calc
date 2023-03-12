@@ -179,6 +179,8 @@ def get_sin():
     last = re.findall(r"[-+]?(?:\d*\.*\d+)", value)[-1]
     if len(value) == len(last):
         calc.delete(len(value) - len(last), END)
+    elif value[-len(last) - 1:][0] in ["*", "/"]:
+        calc.delete(len(value) - len(last), END)
     else:
         calc.delete(len(value) - len(last) + 1, END)
     if sin(radians(float(last))) == int(sin(radians(float(last)))):
@@ -196,6 +198,8 @@ def get_cos():
     last = re.findall(r"[-+]?(?:\d*\.*\d+)", value)[-1]
     if len(value) == len(last):
         calc.delete(len(value) - len(last), END)
+    elif value[-len(last) - 1:][0] in ["*", "/"]:
+        calc.delete(len(value) - len(last), END)
     else:
         calc.delete(len(value) - len(last) + 1, END)
     if cos(radians(float(last))) == int(cos(radians(float(last)))):
@@ -205,7 +209,7 @@ def get_cos():
 
 
 def tan_btn():
-    return ttk.Button(text='tan', width=btn_w, command=lambda: get_tan())
+    return ttk.Button(text='tg', width=btn_w, command=lambda: get_tan())
 
 
 def tg(angle):
@@ -216,6 +220,8 @@ def get_tan():
     value = calc.get()
     last = re.findall(r"[-+]?(?:\d*\.*\d+)", value)[-1]
     if len(value) == len(last):
+        calc.delete(len(value) - len(last), END)
+    elif value[-len(last) - 1:][0] in ["*", "/"]:
         calc.delete(len(value) - len(last), END)
     else:
         calc.delete(len(value) - len(last) + 1, END)
@@ -241,6 +247,8 @@ def get_ctg():
     value = calc.get()
     last = re.findall(r"[-+]?(?:\d*\.*\d+)", value)[-1]
     if len(value) == len(last):
+        calc.delete(len(value) - len(last), END)
+    elif value[-len(last) - 1:][0] in ["*", "/"]:
         calc.delete(len(value) - len(last), END)
     else:
         calc.delete(len(value) - len(last) + 1, END)
